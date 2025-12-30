@@ -4,8 +4,6 @@ import sys
 
 import pandas as pd
 
-# pip install pandas odfpy openpyxl
-
 # --- DEFAULT CONFIGURATION ---
 DEFAULT_FOLDER = "."
 DEFAULT_SHEET = "Sheet1"
@@ -13,7 +11,6 @@ DEFAULT_CELL = "A0"
 # -----------------------------
 
 def get_cell_value(folder_path, sheet_name, cell_address):
-    # 1. Convert cell address (e.g., "B5") to DataFrame indices
     col_letter = "".join(filter(str.isalpha, cell_address)).upper()
     row_number = int("".join(filter(str.isdigit, cell_address))) - 1
 
@@ -24,12 +21,10 @@ def get_cell_value(folder_path, sheet_name, cell_address):
 
     results = []
 
-    # 2. Iterate through files
     if not os.path.isdir(folder_path):
         sys.stderr.write(f"Error: The folder '{folder_path}' does not exist.\n")
         return
 
-    # iterate through files
     for filename in os.listdir(folder_path):
         if filename.endswith(".ods"):
             file_path = os.path.join(folder_path, filename)
@@ -83,5 +78,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # get_cell_value(args.folder, args.sheet, args.cell)
-    get_cell_value(FOLDER_TO_CHECK, TARGET_SHEET, TARGET_CELL)
+    get_cell_value(args.folder, args.sheet, args.cell)
