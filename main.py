@@ -50,6 +50,8 @@ def get_cell_value(folder_path, sheet_name, cell_address):
 
     results.sort(key=lambda x: x[0])
 
+    print("ID, number_of_points;")
+
     for r_id, r_val in results:
         print(f"{r_id}, {r_val};")
 
